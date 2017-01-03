@@ -23,6 +23,7 @@ namespace CaelumEstoque.Controllers
             var categorias = categoriasDao.Lista();
 
             ViewBag.Categorias = categorias;
+            ViewBag.Produto = new Produto();
 
             return View();
         }
@@ -30,12 +31,26 @@ namespace CaelumEstoque.Controllers
         [HttpPost]
         public ActionResult Adiciona(Produto produto)
         {
-            var dao = new ProdutosDAO();
+            const int idInformatica = 1;
 
-            dao.Adiciona(produto);
+            if (produto.CategoriaId.Equals(idInformatica) && produto.Preco < 100)
+            {
+                ModelState.AddModelError("produto.Invalido","Informática com preço abaixo de 100");
+            }
 
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+
+                var dao = new ProdutosDAO();
+                dao.Adiciona(produto);
+
+                return RedirectToAction("Index");
+            }
+
+            var categoriasDao = new CategoriasDAO();
+            ViewBag.Produto = produto;
+            ViewBag.Categorias = categoriasDao.Lista();
+            return View("Form");
         }
-
     }
 }
