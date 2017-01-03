@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using CaelumEstoque.DAO;
+using CaelumEstoque.Models;
 
 namespace CaelumEstoque.Controllers
 {
@@ -13,5 +14,21 @@ namespace CaelumEstoque.Controllers
             ViewBag.Categorias = categorias;
             return View();
         }
+
+        public ActionResult Form()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Adiciona(CategoriaDoProduto categoria)
+        {
+            var dao = new CategoriasDAO();
+
+            dao.Adiciona(categoria);
+
+            return RedirectToAction("Index");
+        }
+
     }
 }
