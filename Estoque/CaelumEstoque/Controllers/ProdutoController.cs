@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using CaelumEstoque.DAO;
+using CaelumEstoque.Filters;
 using CaelumEstoque.Models;
 
 namespace CaelumEstoque.Controllers
 {
+    [AutorizacaoFilter]
     public class ProdutoController : Controller
     {
         // GET: Produtos
@@ -29,6 +30,7 @@ namespace CaelumEstoque.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Adiciona(Produto produto)
         {
             const int idInformatica = 1;
