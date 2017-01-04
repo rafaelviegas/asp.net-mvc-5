@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using CaelumEstoque.DAO;
 using CaelumEstoque.Models;
 
@@ -12,9 +13,7 @@ namespace CaelumEstoque.Controllers
             var dao = new ProdutosDAO();
             var produtos = dao.Lista();
 
-            ViewBag.Produtos = produtos;
-
-            return View();
+            return View(produtos);
         }
 
         public ActionResult Form()
@@ -51,6 +50,16 @@ namespace CaelumEstoque.Controllers
             ViewBag.Produto = produto;
             ViewBag.Categorias = categoriasDao.Lista();
             return View("Form");
+        }
+
+        public ActionResult Visualiza(int id)
+        {
+            var dao = new ProdutosDAO();
+            var produto = dao.BuscaPorId(id);
+            ViewBag.Produto = produto;
+
+            return View();
+
         }
     }
 }
