@@ -10,15 +10,15 @@
     <title>Visualiza</title>
 </head>
 <body>
-<div>
-    Id: @ViewBag.Produto.Id<br/>
-    Nome: @ViewBag.Produto.Nome<br/>
-    Quantidade: @ViewBag.Produto.Quantidade<br/>
-    Preço: @ViewBag.Produto.Preco<br />
-    Descrição: @ViewBag.Produto.Descricao<br />
-    Categoria: @ViewBag.Produto.Categoria.Nome<br/>
+    <div>
+        Id: @ViewBag.Produto.Id<br />
+        Nome: @ViewBag.Produto.Nome<br />
+        Quantidade: @ViewBag.Produto.Quantidade<br />
+        Preço: @ViewBag.Produto.Preco<br />
+        Descrição: @ViewBag.Produto.Descricao<br />
+        Categoria: @ViewBag.Produto.Categoria.Nome<br />
 
-    @Html.ActionLink("Voltar para a lista","Index","Produto")
+        @Html.RouteLink("Voltar para a lista", "ListaProdutos")
 </div>
 </body>
 </html>
