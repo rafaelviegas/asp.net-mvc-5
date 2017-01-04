@@ -7,7 +7,7 @@ namespace CaelumEstoque.Controllers
 {
     public class ProdutoController : Controller
     {
-        // GET: Produto
+        // GET: Produtos
         [Route("produtos", Name = "ListaProdutos")]
         public ActionResult Index()
         {
